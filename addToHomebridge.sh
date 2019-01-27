@@ -3,11 +3,19 @@ CONFIG_LOCATION="/var/homebridge/config.json"
 OLISTO_URL=https://connect.triggi.com/c/B0wuxnS6T8bvw78oZZ7M
 if [ -z "$1" ]
   then
-    echo "No argument supplied"
+    echo "No name supplied"
 	exit 1
 fi
+if [ -z "$2" ]
+  then
+    echo "No type supplied"
+        exit 1
+fi
 
-new=$(jq --arg argo "$1" '.platforms = [.platforms[] | select(.platform=="Olisto").triggs += [{"name":$argo,"type":"switch","connecturl":"'$OLISTO_URL'"}]]' $CONFIG_LOCATION)
+
+
+
+new=$(jq --arg argo "$1" '.platforms = [.platforms[] | select(.platform=="Olisto").triggs += [{"name":$argo,"type":"'$2'","connecturl":"'$OLISTO_URL'"}]]' $CONFIG_LOCATION)
 jq . <<<  "$new"
 read -p "Save this new config file? " -n 1 -r
 echo    # (optional) move to a new line
