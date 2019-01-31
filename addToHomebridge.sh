@@ -1,6 +1,6 @@
 #!/bin/bash
 CONFIG_LOCATION="/var/homebridge/config.json"
-OLISTO_URL=https://connect.triggi.com/c/B0wuxnS6T8bvw78oZZ7M
+OLISTO_URL=""
 if [ -z "$1" ]
   then
     echo "No name supplied"
